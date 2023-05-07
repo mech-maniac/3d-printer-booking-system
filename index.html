@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Printer Booking System</title>
+  <!-- CSS starting -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+    }
+    
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    h1 {
+      margin: 0;
+    }
+    
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    label {
+      margin-bottom: 10px;
+    }
+    
+    input[type="text"],
+    input[type="password"],
+    input[type="date"],
+    select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    
+    button[type="submit"],
+    button {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    button[type="submit"]:hover,
+    button:hover {
+      background-color: #555;
+    }
+  </style>
+  <!-- CSS END-->
+</head>
+<body>
+  <header>
+    <h1>3D Printer Booking System</h1>
+  </header>
+  <main>
+    <form id="loginForm">
+      <h2>Login</h2>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+    <div id="bookingForm" style="display:none;">
+      <h2>Calendar</h2>
+      <p>Select a date to book the 3D printer:</p>
+      <input type="date" id="bookingDate">
+      <h2>Time Slots</h2>
+      <p>Select a time slot to book the 3D printer:</p>
+      <select id="bookingTime">
+        <option value="9:00 AM">9:00 AM</option>
+        <option value="10:00 AM">10:00 AM</option>
+        <option value="11:00 AM">11:00 AM</option>
+        <option value="12:00 PM">12:00 PM</option>
+        <option value="1:00 PM">1:00 PM</option>
+        <option value="2:00 PM">2:00 PM</option>
+        <option value="3:00 PM">3:00 PM</option>
+        <option value="4:00 PM">4:00 PM</option>
+        <option value="5:00 PM">5:00 PM</option>
+      </select>
+      <label for="gcodeFile">Upload G-code file:</label>
+      <input type="file" id="gcodeFile" name="gcodeFile">
+      <button onclick="bookPrinter()">Book Printer</button>
+    </div>
+    <div id="confirmation">
+      <h1>Booking confirmed!</h1>
+    </div>
+    <script>
+      const loginForm = document.getElementById("loginForm");
+      const bookingForm = document.getElementById("bookingForm");
+      const confirmation = document.getElementById("confirmation");
+      confirmation.style.display = "none";
+      loginForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        // Check if the username and password are correct (replace with your own authentication logic)
+        if (username === "admin" && password === "password") {
+          loginForm.style.display = "none";
+          bookingForm.style.display = "block";
+        } if (username === "somsum" && password === "1234") {
+          loginForm.style.display = "none";
+          bookingForm.style.display = "block";
+        } else { 
+          alert("Invalid username or password.");
+        }
+      });      
+      function bookPrinter() {
+        bookingForm.style.display = "none";
+        confirmation.style.display = "block";
+        const bookingDate = document.getElementById("bookingDate").value;
+        const bookingTime = document.getElementById("bookingTime").value;
+      }
+    </script>
+  </body>
+  </html>
